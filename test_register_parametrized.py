@@ -8,6 +8,8 @@ def user_service(tmp_path):
     storage.write_text("{}")
     return UserService(storage_path=storage)
 
+@pytest.mark.smoke
+@pytest.mark.auth
 @pytest.mark.parametrize(
     "email, password",
     [
@@ -21,7 +23,8 @@ def test_register_with_valid_data_creates_user(user_service, email, password):
     user_service.register(email, password)
     assert user_service.count_users() == 1
 
-
+@pytest.mark.regression
+@pytest.mark.auth
 @pytest.mark.parametrize(
     "email, password",
     [

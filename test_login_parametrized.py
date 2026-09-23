@@ -10,7 +10,8 @@ def user_service_with_alice(tmp_path):
     service.register("alice@example.com", "Password123")
     return service
 
-
+@pytest.mark.regression
+@pytest.mark.auth
 @pytest.mark.parametrize(
     "email, password",
     [
