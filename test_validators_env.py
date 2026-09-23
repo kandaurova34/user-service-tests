@@ -1,0 +1,17 @@
+import os
+
+
+def get_max_password_length():
+    """Читает максимальную длину пароля из переменной окружения."""
+    return int(os.environ.get("MAX_PASSWORD_LENGTH", "64"))
+
+
+def test_default_max_password_length(monkeypatch):
+    assert get_max_password_length() == 64
+
+def test_max_password_length_from_env(monkeypatch):
+    monkeypatch.setenv("MAX_PASSWORD_LENGTH", "128")
+    assert get_max_password_length() == 128
+
+def test_max_password_length_isolated_between_tests(monkeypatch):
+    assert get_max_password_length() == 64
