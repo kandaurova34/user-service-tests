@@ -1,7 +1,8 @@
 import pytest
 from validators import is_valid_email, is_valid_password
 
-
+@pytest.mark.smoke
+@pytest.mark.validators
 @pytest.mark.parametrize(
     "email, expected",
     [
@@ -23,7 +24,8 @@ from validators import is_valid_email, is_valid_password
 def test_is_valid_email(email, expected):
     assert is_valid_email(email) == expected
 
-
+@pytest.mark.smoke
+@pytest.mark.validators
 @pytest.mark.parametrize(
     "password, expected",
     [
